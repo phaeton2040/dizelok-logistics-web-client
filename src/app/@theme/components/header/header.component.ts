@@ -1,7 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { NbMenuService, NbSidebarService } from '@nebular/theme';
-import { UserService } from '../../../@core/data/users.service';
+
+import { NbAuthService, NbAuthToken } from '@nebular/auth';
+import { User } from '../../../@core/models/user.model';
+import { IUser } from '../../../@core/interfaces/user.interface';
+import { filter } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-header',
@@ -12,18 +17,32 @@ export class HeaderComponent implements OnInit {
 
   @Input() position = 'normal';
 
-  user: any;
+  user: any = <IUser>{};
 
-  userMenu = [{ title: 'Профиль' }, { title: 'Выйти' }];
+  userMenu = [{ title: 'Выйти', route: '/auth/logout' }];
 
   constructor(private sidebarService: NbSidebarService,
+              private router: Router,
               private menuService: NbMenuService,
-              private userService: UserService) {
-  }
+              private nbMenuService: NbMenuService,
+              private authService: NbAuthService) {}
 
   ngOnInit() {
-    this.userService.getUsers()
-      .subscribe((users: any) => this.user = users.konstantin);
+    this.authService.onTokenChange()
+          .subscribe((token: NbAuthToken) => {
+            if (token.isValid()) {
+              this.user = new User(token.getPayload().data);
+            }
+          });
+    this.nbMenuService.onItemClick()
+        .pipe(
+          filter(({ tag }) => {
+            return tag === 'user-context-menu'
+          })
+        )
+        .subscribe((menuItem: any) => {
+          this.router.navigate([menuItem.item.route]);
+        })
   }
 
   toggleSidebar(): boolean {
