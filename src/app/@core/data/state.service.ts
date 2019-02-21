@@ -4,6 +4,7 @@ import { takeWhile } from 'rxjs/operators';
 
 import { NbLayoutDirectionService, NbLayoutDirection } from '@nebular/theme';
 
+// TODO: remove this stuff
 @Injectable()
 export class StateService implements OnDestroy {
 

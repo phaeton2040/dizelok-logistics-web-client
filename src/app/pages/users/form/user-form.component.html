@@ -1,0 +1,55 @@
+<div class="container">
+        <div class="row">
+            <div class="full-width-wrapper">
+                <nb-card>
+                    <nb-card-header>Добавить пользователя</nb-card-header>
+                    <nb-card-body>
+                        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="input-container">
+                                        <input type="text"
+                                            nbInput
+                                            fullWidth
+                                            formControlName="firstName"
+                                            placeholder="Имя">
+                                    </div>
+                                    <div class="input-container">
+                                        <input type="text"
+                                            nbInput
+                                            fullWidth
+                                            formControlName="lastName"
+                                            placeholder="Фамилия">
+                                    </div>
+                                    <div class="input-container">
+                                        <input type="text"
+                                            nbInput
+                                            fullWidth
+                                            formControlName="email"
+                                            placeholder="Email">
+                                    </div>
+                                    <div class="input-container">
+                                        <input type="password"
+                                            nbInput
+                                            fullWidth
+                                            formControlName="password"
+                                            placeholder="Пароль">
+                                    </div>
+                                    <div class="input-container">
+                                        <nb-select fullWidth placeholder="Роль" formControlName="role">
+                                            <nb-option value="manager">Менеджер</nb-option>
+                                            <nb-option value="driver">Водитель</nb-option>
+                                            <nb-option value="org-admin">Администратор</nb-option>
+                                        </nb-select>
+                                    </div>
+                                    <div class="input-container">
+                                        <button type="submit" nbButton>Добавить пользователя</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </nb-card-body>
+                </nb-card>
+            </div>
+        </div>   
+</div> 

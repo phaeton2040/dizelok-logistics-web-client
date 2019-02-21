@@ -15,6 +15,9 @@
 
 @import './bootstrap-rtl';
 
+// Our variables
+@import './variables.scss';
+
 // install the framework and custom global styles
 @include nb-install() {
 
@@ -38,11 +41,30 @@
 @import url('https://use.fontawesome.com/releases/v5.7.1/css/all.css');
 
 * {
-  font-family: 'Exo 2', sans-serif
+  font-family: 'Exo 2', sans-serif;
 }
 
-.nb-theme-corporate nb-user .user-name {
-  font-family: 'Exo 2';
+.full-width-wrapper {
+  flex: 1
+}
+
+// Костыли для шрифта
+.nb-theme-corporate {
+  [nbButton] {
+    font-family: 'Exo 2' !important;
+  }
+  
+  nb-user .user-name {
+    font-family: 'Exo 2' !important;
+  }
+
+  nb-card-header {
+    font-family: 'Exo 2' !important;
+  }
+
+  nb-select button {
+    font-family: 'Exo 2' !important;
+  }
 }
 
 .user-container:hover {

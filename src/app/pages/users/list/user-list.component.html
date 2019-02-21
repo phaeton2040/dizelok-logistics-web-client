@@ -1,0 +1,12 @@
+<div class="row">
+    <div class="full-width-wrapper">
+        <nb-card *ngIf="loaded">
+                <nb-card-header>Пользователи системы</nb-card-header>
+                <nb-list>
+                    <nb-list-item *ngFor="let user of users">
+                        <nb-user [name]="user.name" [title]="user.role"></nb-user>
+                    </nb-list-item>
+                </nb-list>
+            </nb-card>
+    </div>
+</div>    

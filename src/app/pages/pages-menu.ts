@@ -45,15 +45,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Все пользователи',
-        link: '#'
+        link: '/pages/users'
       },
       {
-        title: 'Добавить менеджера',
-        link: '#'
-      },
-      {
-        title: 'Добавить водителя',
-        link: '#'
+        title: 'Добавить пользователя',
+        link: '/pages/users/add'
       }
     ]
   },
