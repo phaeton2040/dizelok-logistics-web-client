@@ -2,11 +2,12 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { NbMenuService, NbSidebarService } from '@nebular/theme';
 
-import { NbAuthService, NbAuthToken } from '@nebular/auth';
+import { NbAuthToken } from '@nebular/auth';
 import { User } from '../../../@core/models/user.model';
 import { IUser } from '../../../@core/interfaces/user.interface';
 import { filter } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../@core/data/auth.service';
 
 @Component({
   selector: 'ngx-header',
@@ -21,18 +22,15 @@ export class HeaderComponent implements OnInit {
 
   userMenu = [{ title: 'Выйти', route: '/auth/logout' }];
 
-  constructor(private sidebarService: NbSidebarService,
-              private router: Router,
+  constructor(private router: Router,
               private menuService: NbMenuService,
               private nbMenuService: NbMenuService,
-              private authService: NbAuthService) {}
+              private authService: AuthService) {}
 
   ngOnInit() {
-    this.authService.onTokenChange()
-          .subscribe((token: NbAuthToken) => {
-            if (token.isValid()) {
-              this.user = new User(token.getPayload().data);
-            }
+    this.authService.user$
+          .subscribe((user: User) => {
+            this.user = user;
           });
     this.nbMenuService.onItemClick()
         .pipe(
@@ -43,18 +41,6 @@ export class HeaderComponent implements OnInit {
         .subscribe((menuItem: any) => {
           this.router.navigate([menuItem.item.route]);
         })
-  }
-
-  toggleSidebar(): boolean {
-    this.sidebarService.toggle(true, 'menu-sidebar');
-
-    return false;
-  }
-
-  toggleSettings(): boolean {
-    this.sidebarService.toggle(false, 'settings-sidebar');
-
-    return false;
   }
 
   goToHome() {

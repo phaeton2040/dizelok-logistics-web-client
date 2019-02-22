@@ -1,18 +1,33 @@
-import { Component } from "@angular/core";
+import { Component, OnDestroy } from "@angular/core";
 import { FormGroup, Validators, FormControl } from "@angular/forms";
 import { User } from "../../../@core/models/user.model";
+import { AuthService } from "../../../@core/data/auth.service";
+import { Subscription } from "rxjs";
+import { UserService } from "../../../@core/data/user.service";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'ngx-user-form',
     templateUrl: './user-form.component.html',
     styleUrls: ['./user-form.component.scss']
 })
-export class UserFormComponent {
+export class UserFormComponent implements OnDestroy {
     public userForm: FormGroup;
     public user: User = new User(<any>{});
+    public currentUser: User;
+    public inProgress = false;
 
-    constructor() {
+    private authSub: Subscription;
+
+    constructor(private auth: AuthService,
+                private userSrv: UserService,
+                private router: Router) {
         this.initForm();
+        this.authSub = this.auth.user$.subscribe(user => this.currentUser = user);
+    }
+
+    ngOnDestroy() {
+        this.authSub.unsubscribe();
     }
 
     private initForm(): void {
@@ -27,6 +42,21 @@ export class UserFormComponent {
     }
 
     onSubmit() {
-        console.log(this.userForm.value);
+        if (this.userForm.valid) {
+            this.inProgress = true;
+            this.userSrv.saveUser(new User({
+                ...this.userForm.value, organisation_id: this.currentUser.organisation_id
+            })).subscribe(response => {
+                this.inProgress = false;
+
+                if (response.ok) {
+                    this.router.navigate(['pages/users'])
+                }
+            })
+        } else {
+            Object.keys(this.userForm.controls).forEach(controlName => {
+                this.userForm.controls[controlName].markAsDirty()
+            })
+        }
     }
 }

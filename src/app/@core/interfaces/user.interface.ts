@@ -5,6 +5,7 @@ export interface IUser {
     username: string;
     organisation_id: string;
     role: string;
+    password?: string;
 
     name: string; // getter for fullname
 }

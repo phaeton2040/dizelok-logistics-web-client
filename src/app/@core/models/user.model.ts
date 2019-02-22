@@ -5,7 +5,8 @@ export class User implements IUser {
     lastName: string;
     email: string;
     username: string;
-    organisation_id: string;
+    organisation_id: string; // kebab case for API compatibility
+    password?: string;
     
     private _role: string;
 
@@ -22,6 +23,7 @@ export class User implements IUser {
         this._role = source.role;
         this.organisation_id = source.organisation_id;
         this.username = source.username;
+        this.password = source.password;
     }
 
     public get name(): string {
@@ -30,5 +32,17 @@ export class User implements IUser {
 
     public get role(): string {
         return User.roleMappings[this._role];
+    }
+
+    public get apiObj(): any {
+        return {
+            firstName: this.firstName,
+            lastName: this.lastName,
+            email: this.email,
+            username: this.email.split('@')[0],
+            role: this._role,
+            organisation_id: this.organisation_id,
+            password: this.password
+        }
     }
 }

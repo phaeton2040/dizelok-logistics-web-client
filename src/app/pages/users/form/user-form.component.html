@@ -1,7 +1,7 @@
 <div class="container">
         <div class="row">
             <div class="full-width-wrapper">
-                <nb-card>
+                <nb-card [nbSpinner]="inProgress" nbSpinnerSize="xlarge">
                     <nb-card-header>Добавить пользователя</nb-card-header>
                     <nb-card-body>
                         <form [formGroup]="userForm" (ngSubmit)="onSubmit()">

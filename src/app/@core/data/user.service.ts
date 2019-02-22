@@ -20,4 +20,13 @@ export class UserService {
                        map((response: IUsersResponse) => response.data.map((item: IUser) => new User(item)))
                    );
     }
+
+    saveUser(user: User): Observable<any> {
+        return this.http.post(`${this._baseUrl}/users`, user.apiObj)
+            .pipe(
+                map((response) => {
+                    return response;
+                })
+            )
+    }
 }
