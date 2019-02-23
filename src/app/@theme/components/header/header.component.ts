@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit {
   userMenu = [{ title: 'Выйти', route: '/auth/logout' }];
 
   constructor(private router: Router,
+              private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
               private nbMenuService: NbMenuService,
               private authService: AuthService) {}
@@ -45,5 +46,17 @@ export class HeaderComponent implements OnInit {
 
   goToHome() {
     this.menuService.navigateHome();
+  }
+
+  toggleSidebar(): boolean {
+    this.sidebarService.toggle(true, 'menu-sidebar');
+
+    return false;
+  }
+
+  toggleSettings(): boolean {
+    this.sidebarService.toggle(false, 'settings-sidebar');
+
+    return false;
   }
 }

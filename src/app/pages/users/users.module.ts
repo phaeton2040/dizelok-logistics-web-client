@@ -1,6 +1,4 @@
 import { NgModule } from '@angular/core';
-
-
 import { ThemeModule } from '../../@theme/theme.module';
 import { UserListComponent } from './list/user-list.component';
 import { CommonModule } from '@angular/common';

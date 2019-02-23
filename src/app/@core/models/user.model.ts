@@ -1,14 +1,14 @@
 import { IUser } from "../interfaces/user.interface";
 
 export class User implements IUser {
+    id: number;
     firstName: string;
     lastName: string;
     email: string;
     username: string;
     organisation_id: string; // kebab case for API compatibility
     password?: string;
-    
-    private _role: string;
+    _role: string;
 
     public static roleMappings = {
         'org-admin': 'Администратор',
@@ -17,6 +17,7 @@ export class User implements IUser {
     }
 
     constructor(source: IUser) {
+        this.id = source.id;
         this.email = source.email;
         this.firstName = source.firstName;
         this.lastName = source.lastName;
@@ -36,6 +37,7 @@ export class User implements IUser {
 
     public get apiObj(): any {
         return {
+            id: this.id,
             firstName: this.firstName,
             lastName: this.lastName,
             email: this.email,

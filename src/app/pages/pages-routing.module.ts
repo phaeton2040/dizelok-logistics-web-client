@@ -5,6 +5,7 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserListComponent } from './users/list/user-list.component';
 import { UserFormComponent } from './users/form/user-form.component';
+import { UserResolver } from '../@core/data/resolvers/user.resolver';
 
 const routes: Routes = [{
   path: '',
@@ -16,7 +17,6 @@ const routes: Routes = [{
     },
     {
       path: 'users',
-      // component: UserListComponent,
       children: [
         {
           path: '',
@@ -25,6 +25,11 @@ const routes: Routes = [{
         {
           path: 'add',
           component: UserFormComponent
+        },
+        {
+          path: ':id',
+          component: UserFormComponent,
+          resolve: { user: UserResolver }
         },
         {
           path: '',
@@ -45,5 +50,4 @@ const routes: Routes = [{
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class PagesRoutingModule {
-}
+export class PagesRoutingModule {}

@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { UserService } from "../../../@core/data/user.service";
 import { User } from "../../../@core/models/user.model";
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -9,14 +10,19 @@ import { User } from "../../../@core/models/user.model";
     styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent {
-    public loaded = false;
     public users: User[];
+    public inProgress = false;
 
-    constructor(private userService: UserService) {
+    constructor(private userService: UserService, private router: Router) {
+        this.inProgress = true;
         this.userService.getUsers()
             .subscribe((users: User[]) => {
-                this.loaded = true;
+                this.inProgress = false;
                 this.users = users;
             })
+    }
+
+    onUserClick(user) {
+        this.router.navigate([`pages/users/${user.id}`])
     }
 }

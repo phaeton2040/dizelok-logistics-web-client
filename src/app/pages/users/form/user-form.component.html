@@ -2,7 +2,7 @@
         <div class="row">
             <div class="full-width-wrapper">
                 <nb-card [nbSpinner]="inProgress" nbSpinnerSize="xlarge">
-                    <nb-card-header>Добавить пользователя</nb-card-header>
+                    <nb-card-header>{{title}}</nb-card-header>
                     <nb-card-body>
                         <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
                             <div class="row">
@@ -43,7 +43,7 @@
                                         </nb-select>
                                     </div>
                                     <div class="input-container">
-                                        <button type="submit" nbButton>Добавить пользователя</button>
+                                        <button type="submit" nbButton>{{buttonText}}</button>
                                     </div>
                                 </div>
                             </div>

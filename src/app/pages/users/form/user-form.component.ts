@@ -4,7 +4,7 @@ import { User } from "../../../@core/models/user.model";
 import { AuthService } from "../../../@core/data/auth.service";
 import { Subscription } from "rxjs";
 import { UserService } from "../../../@core/data/user.service";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
     selector: 'ngx-user-form',
@@ -16,18 +16,28 @@ export class UserFormComponent implements OnDestroy {
     public user: User = new User(<any>{});
     public currentUser: User;
     public inProgress = false;
+    public buttonText: string;
+    public title: string;
 
     private authSub: Subscription;
+    private routeDataSub: Subscription;
 
     constructor(private auth: AuthService,
                 private userSrv: UserService,
+                private route: ActivatedRoute,
                 private router: Router) {
-        this.initForm();
         this.authSub = this.auth.user$.subscribe(user => this.currentUser = user);
+        this.routeDataSub = this.route.data.subscribe(({ user }) => {
+            this.user = user || this.user;
+            this.buttonText = this.user.email ? 'Обновить' : 'Добавить пользователя';
+            this.title = this.user.email ? 'Редактировать пользователя' : 'Добавить пользователя';
+            this.initForm();
+        })
     }
 
     ngOnDestroy() {
         this.authSub.unsubscribe();
+        this.routeDataSub.unsubscribe();
     }
 
     private initForm(): void {
@@ -36,8 +46,8 @@ export class UserFormComponent implements OnDestroy {
             firstName: new FormControl(this.user.firstName, Validators.required),
             lastName: new FormControl(this.user.lastName, Validators.required),
             email: new FormControl(this.user.email, { validators: [Validators.required, Validators.email], updateOn: 'blur'}),
-            password: new FormControl(null, Validators.required),
-            role: new FormControl(this.user.role, Validators.required)
+            password: new FormControl(null, { validators: !this.user.email ? Validators.required : [] }),
+            role: new FormControl(this.user._role, Validators.required)
         });
     }
 
@@ -45,7 +55,9 @@ export class UserFormComponent implements OnDestroy {
         if (this.userForm.valid) {
             this.inProgress = true;
             this.userSrv.saveUser(new User({
-                ...this.userForm.value, organisation_id: this.currentUser.organisation_id
+                ...this.userForm.value,
+                id: this.user.id,
+                organisation_id: this.currentUser.organisation_id
             })).subscribe(response => {
                 this.inProgress = false;
 
@@ -56,7 +68,7 @@ export class UserFormComponent implements OnDestroy {
         } else {
             Object.keys(this.userForm.controls).forEach(controlName => {
                 this.userForm.controls[controlName].markAsDirty()
-            })
+            });
         }
     }
 }
