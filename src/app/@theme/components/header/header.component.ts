@@ -8,6 +8,9 @@ import { IUser } from '../../../@core/interfaces/user.interface';
 import { filter } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../@core/data/auth.service';
+import { OrganisationService } from '../../../@core/data/organisation.service';
+import { Organisation } from '../../../@core/models/organisation.model';
+import { IOrganisation } from '../../../@core/interfaces/organisation.interface';
 
 @Component({
   selector: 'ngx-header',
@@ -18,7 +21,8 @@ export class HeaderComponent implements OnInit {
 
   @Input() position = 'normal';
 
-  user: any = <IUser>{};
+  user: User = <IUser>{};
+  organisation: Organisation = <IOrganisation>{};
 
   userMenu = [{ title: 'Выйти', route: '/auth/logout' }];
 
@@ -26,9 +30,12 @@ export class HeaderComponent implements OnInit {
               private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
               private nbMenuService: NbMenuService,
-              private authService: AuthService) {}
+              private authService: AuthService,
+              private orgService: OrganisationService) {}
 
   ngOnInit() {
+    this.orgService.organisation$
+        .subscribe((organisation: Organisation) => this.organisation = organisation);
     this.authService.user$
           .subscribe((user: User) => {
             this.user = user;

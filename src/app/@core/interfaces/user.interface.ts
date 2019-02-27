@@ -8,5 +8,7 @@ export interface IUser {
     role: string;
     password?: string;
 
+    _role: string;
+    apiObj: any;
     name: string; // getter for fullname
 }

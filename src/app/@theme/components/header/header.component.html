@@ -3,7 +3,7 @@
      [class.right]="position === 'inverse'">
   <div class="logo-containter">
     <a (click)="toggleSidebar()" href="#" class="navigation"><i class="nb-menu"></i></a>
-    <div class="logo" (click)="goToHome()">Dizelok Logistix</div>
+    <div class="logo" (click)="goToHome()">{{organisation.name}}</div>
   </div>
   <!-- TODO: uncomment this if different themes are needed -->
   <!-- <ngx-theme-switcher></ngx-theme-switcher> -->

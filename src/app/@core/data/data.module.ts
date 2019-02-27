@@ -5,11 +5,13 @@ import { StateService } from './state.service';
 import { UserService } from './user.service';
 import { AuthService } from './auth.service';
 import { UserResolver } from './resolvers/user.resolver';
+import { OrganisationService } from './organisation.service';
 
 const SERVICES = [
   StateService,
   UserService,
   AuthService,
+  OrganisationService,
 
   // Resolvers
   UserResolver
