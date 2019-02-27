@@ -6,6 +6,7 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { ThemeModule } from '../@theme/theme.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { UsersModule } from './users/users.module';
+import { OrganisationModule } from './organisation/organisation.module';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -17,6 +18,7 @@ const PAGES_COMPONENTS = [
     ThemeModule,
     DashboardModule,
     UsersModule,
+    OrganisationModule,
     MiscellaneousModule,
   ],
   declarations: [

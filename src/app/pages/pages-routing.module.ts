@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserListComponent } from './users/list/user-list.component';
 import { UserFormComponent } from './users/form/user-form.component';
 import { UserResolver } from '../@core/data/resolvers/user.resolver';
+import { OrganisationSettingsComponent } from './organisation/settings/org-settings.component';
 
 const routes: Routes = [{
   path: '',
@@ -35,6 +36,20 @@ const routes: Routes = [{
           path: '',
           redirectTo: 'users',
           pathMatch: 'full',
+        }
+      ]
+    },
+    {
+      path: 'organisation',
+      children: [
+        {
+          path: '',
+          redirectTo: '/pages/organisation/settings',
+          pathMatch: 'full'
+        },
+        {
+          path: 'settings',
+          component: OrganisationSettingsComponent
         }
       ]
     },

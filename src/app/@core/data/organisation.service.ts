@@ -20,10 +20,21 @@ export class OrganisationService {
     } 
 
     constructor(private http: HttpClient) {
+        this.getOrganisation();
+    }
+
+    getOrganisation(): void {
         this.http.get(`${this._baseUrl}/organisation/current`)
-                .subscribe((response: IAPIResponse) => {                   
-                    this.organisationSubj.next(new Organisation(response.organisation));
-                });
+            .subscribe((response: IAPIResponse) => {                   
+                this.organisationSubj.next(new Organisation(response.organisation));
+            });
+    }
+
+    saveSettings(organisation: Organisation): Observable<IAPIResponse> {
+        return this.http.post(`${this._baseUrl}/organisation`, organisation.apiObj)
+                .pipe(
+                    map((response: IAPIResponse) => response)
+                )
     }
     
 }

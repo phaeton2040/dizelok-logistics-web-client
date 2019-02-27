@@ -59,7 +59,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Настройки организации',
-        link: '#'
+        link: '/pages/organisation/settings'
       },
       {
         title: 'Добавить точки погрузки',

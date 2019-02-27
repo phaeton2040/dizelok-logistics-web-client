@@ -90,9 +90,11 @@ export class UserFormComponent implements OnDestroy {
             })
         )
         .subscribe(result => {
+            if (result) {
+                this.router.navigate(['pages/users']);
+            }
             console.log(result);
             this.inProgress = false;
-            this.router.navigate(['pages/users'])
         })
     }
 }

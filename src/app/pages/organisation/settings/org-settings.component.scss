@@ -1,0 +1,13 @@
+@import '../../../@theme/styles/variables.scss';
+
+.input-container {
+    margin-bottom: 1rem;
+
+    input.ng-invalid.ng-dirty {
+        border-color: $input-error-border
+    }
+
+    button {
+        margin-right: 10px;
+    }
+}
