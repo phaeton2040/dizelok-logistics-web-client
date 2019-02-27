@@ -3,10 +3,13 @@
         <nb-card [nbSpinner]="inProgress" nbSpinnerSize="xlarge">
                 <nb-card-header>Пользователи системы</nb-card-header>
                 <nb-list>
-                    <nb-list-item *ngFor="let user of users" (click)="onUserClick(user)">
+                    <nb-list-item *ngFor="let user of users" (click)="onUserClick(user)" [ngClass]="{'me': currentUser.id === user.id}">
                         <nb-user [name]="user.name" [title]="user.role"></nb-user>
+                        <button *ngIf="currentUser.id !== user.id" class="delete-user-button" (click)="onDeleteUser($event, user, dialog)">
+                            <i class="fas fa-trash"></i>
+                        </button>
                     </nb-list-item>
                 </nb-list>
             </nb-card>
     </div>
-</div>    
+</div>

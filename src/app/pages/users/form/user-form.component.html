@@ -44,6 +44,11 @@
                                     </div>
                                     <div class="input-container">
                                         <button type="submit" nbButton>{{buttonText}}</button>
+                                        <button type="button"
+                                                nbButton
+                                                status="danger"
+                                                (click)="onDelete(dialog)"
+                                                *ngIf="user.id && currentUser.id !== user.id">Удалить</button>
                                     </div>
                                 </div>
                             </div>

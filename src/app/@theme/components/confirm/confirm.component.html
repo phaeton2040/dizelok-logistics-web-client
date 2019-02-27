@@ -1,0 +1,7 @@
+<nb-card>
+    <nb-card-header>{{title}}</nb-card-header>
+    <nb-card-footer class="delete-prompt">
+        <button nbButton status="danger" (click)="ref.close(true)">Да</button>
+        <button nbButton status="info" (click)="ref.close(false)">Нет</button>
+    </nb-card-footer>
+</nb-card>

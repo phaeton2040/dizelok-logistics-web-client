@@ -2,9 +2,12 @@ import { Component, OnDestroy } from "@angular/core";
 import { FormGroup, Validators, FormControl } from "@angular/forms";
 import { User } from "../../../@core/models/user.model";
 import { AuthService } from "../../../@core/data/auth.service";
-import { Subscription } from "rxjs";
+import { Subscription, empty } from "rxjs";
 import { UserService } from "../../../@core/data/user.service";
 import { Router, ActivatedRoute } from "@angular/router";
+import { NbDialogService } from "@nebular/theme";
+import { debounceTime, switchMap } from "rxjs/operators";
+import { ConfirmComponent } from "../../../@theme/components/confirm/confirm.component";
 
 @Component({
     selector: 'ngx-user-form',
@@ -25,6 +28,7 @@ export class UserFormComponent implements OnDestroy {
     constructor(private auth: AuthService,
                 private userSrv: UserService,
                 private route: ActivatedRoute,
+                private dialogService: NbDialogService,
                 private router: Router) {
         this.authSub = this.auth.user$.subscribe(user => this.currentUser = user);
         this.routeDataSub = this.route.data.subscribe(({ user }) => {
@@ -70,5 +74,25 @@ export class UserFormComponent implements OnDestroy {
                 this.userForm.controls[controlName].markAsDirty()
             });
         }
+    }
+
+    onDelete() {
+        this.dialogService.open<ConfirmComponent>(ConfirmComponent, {
+            context: <any>{
+                title: `Вы хотите удалить пользователя ${this.user.name}?`
+            }
+        })
+        .onClose
+        .pipe(
+            debounceTime(500),
+            switchMap(proceedWithDelete => {
+                return proceedWithDelete ? this.userSrv.deleteUser(this.user.id) : empty();
+            })
+        )
+        .subscribe(result => {
+            console.log(result);
+            this.inProgress = false;
+            this.router.navigate(['pages/users'])
+        })
     }
 }

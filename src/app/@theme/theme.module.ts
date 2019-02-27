@@ -59,6 +59,7 @@ import {
   SampleLayoutComponent
 } from './layouts';
 import { CORPORATE_THEME } from './styles/theme.corporate';
+import { ConfirmComponent } from './components/confirm/confirm.component';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
@@ -104,11 +105,13 @@ const COMPONENTS = [
   FooterComponent,
   SearchInputComponent,
   ThemeSettingsComponent,
-  SampleLayoutComponent
+  SampleLayoutComponent,
+  ConfirmComponent
 ];
 
 const ENTRY_COMPONENTS = [
   ThemeSwitcherListComponent,
+  ConfirmComponent
 ];
 
 const PIPES = [
