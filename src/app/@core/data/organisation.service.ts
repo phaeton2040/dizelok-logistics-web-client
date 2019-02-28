@@ -14,6 +14,7 @@ export class OrganisationService {
     //TODO: remove hardcode
     private _baseUrl = 'http://localhost:3333';
     private organisationSubj = new BehaviorSubject<Organisation>(<any>{});
+    private loadingPointsSubj = new BehaviorSubject<any>({});
 
     public get organisation$(): Observable<Organisation> {
         return this.organisationSubj.asObservable();
@@ -37,4 +38,7 @@ export class OrganisationService {
                 )
     }
     
+    getLoadingPoints(): void {
+
+    }
 }

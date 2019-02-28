@@ -63,7 +63,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'Добавить точки погрузки',
-        link: '#'
+        link: '/pages/organisation/loading-points'
       }
     ]
   },

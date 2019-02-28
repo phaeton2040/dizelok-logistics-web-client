@@ -43,6 +43,7 @@ export class OrganisationSettingsComponent implements OnDestroy {
     onSubmit() {
         this.inProgress = true;
 
+        // TODO: unsubscribe or use first
         if (this.organisationForm.valid) {
             this.orgService.saveSettings(new Organisation(this.organisationForm.value))
                 .subscribe((response: IAPIResponse) => {

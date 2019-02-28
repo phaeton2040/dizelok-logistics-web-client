@@ -7,6 +7,7 @@ import { UserListComponent } from './users/list/user-list.component';
 import { UserFormComponent } from './users/form/user-form.component';
 import { UserResolver } from '../@core/data/resolvers/user.resolver';
 import { OrganisationSettingsComponent } from './organisation/settings/org-settings.component';
+import { LoadingPointsComponent } from './organisation/loadingPoints/loading-points.component';
 
 const routes: Routes = [{
   path: '',
@@ -50,6 +51,10 @@ const routes: Routes = [{
         {
           path: 'settings',
           component: OrganisationSettingsComponent
+        },
+        {
+          path: 'loading-points',
+          component: LoadingPointsComponent
         }
       ]
     },

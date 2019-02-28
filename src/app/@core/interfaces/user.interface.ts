@@ -4,7 +4,7 @@ export interface IUser {
     lastName: string;
     email: string;
     username: string;
-    organisation_id: string;
+    organisationId: string;
     role: string;
     password?: string;
 

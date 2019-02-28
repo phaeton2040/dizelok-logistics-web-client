@@ -4,25 +4,20 @@ export class Organisation implements IOrganisation {
     id: number;
     name: string;
     phone: string;
-    
-    primary_email: string;
+    primaryEmail: string;
 
     constructor(source: IOrganisation) {
         this.id = source.id;
         this.name = source.name;
         this.phone = source.phone;
-        this.primary_email = source.primary_email || source.primaryEmail;
-    }
-
-    get primaryEmail() {
-        return this.primary_email;
+        this.primaryEmail = source.primaryEmail;
     }
 
     get apiObj() {
         return {
             name: this.name,
             phone: this.phone,
-            primary_email: this.primaryEmail,
+            primaryEmail: this.primaryEmail,
             id: this.id
         }
     }

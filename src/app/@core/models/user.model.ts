@@ -6,7 +6,7 @@ export class User implements IUser {
     lastName: string;
     email: string;
     username: string;
-    organisation_id: string; // kebab case for API compatibility
+    organisationId: string;
     password?: string;
     _role: string;
 
@@ -22,7 +22,7 @@ export class User implements IUser {
         this.firstName = source.firstName;
         this.lastName = source.lastName;
         this._role = source.role;
-        this.organisation_id = source.organisation_id;
+        this.organisationId = source.organisationId;
         this.username = source.username;
         this.password = source.password;
     }
@@ -43,7 +43,7 @@ export class User implements IUser {
             email: this.email,
             username: this.email.split('@')[0],
             role: this._role,
-            organisation_id: this.organisation_id,
+            organisationId: this.organisationId,
             password: this.password
         }
     }

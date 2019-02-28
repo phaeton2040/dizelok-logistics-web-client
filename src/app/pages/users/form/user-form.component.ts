@@ -61,7 +61,7 @@ export class UserFormComponent implements OnDestroy {
             this.userSrv.saveUser(new User({
                 ...this.userForm.value,
                 id: this.user.id,
-                organisation_id: this.currentUser.organisation_id
+                organisationId: this.currentUser.organisationId
             })).subscribe(response => {
                 this.inProgress = false;
 
