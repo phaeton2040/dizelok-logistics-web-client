@@ -1,0 +1,48 @@
+.loading-point-form {
+    padding: 10px;
+
+    form {
+        display: flex;
+
+        .input-container {
+            margin-right: 2rem;
+        }
+    }
+}
+
+nb-list-item {
+    display: flex;
+    justify-content: space-between;
+    
+    .delete-button {
+        display: none;
+    }
+}
+
+nb-list-item:hover {
+    .delete-button {
+        display: block;
+        background: transparent;
+        border: none;
+        outline: none;
+
+        &:hover {
+            opacity: 0.7;
+            cursor: pointer;
+        }
+
+        i {
+            color: crimson;
+        }
+
+        .lp-name {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .lp-address {
+            font-style: italic;
+            font-size: 1rem;
+        }
+    }
+}

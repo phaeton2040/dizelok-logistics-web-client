@@ -3,9 +3,38 @@
         <div class="full-width-wrapper">
             <nb-card [nbSpinner]="inProgress" nbSpinnerSize="xlarge">
                 <nb-card-header>Точки загрузки</nb-card-header>
-                <nb-card-body>
-                    
-                </nb-card-body>
+
+                <div class="loading-point-form">
+                    <form [formGroup]="loadingPointForm" (ngSubmit)="onSubmit()">
+                        <div class="input-container">
+                            <input type="text"
+                                nbInput
+                                formControlName="name"
+                                placeholder="Название" />
+                        </div>
+                        <div class="input-container">
+                            <input type="text"
+                                nbInput
+                                formControlName="address"
+                                placeholder="Адрес" />
+                        </div>
+                        <div class="input-container">
+                            <button type="submit" nbButton>Добавить</button>
+                        </div>
+                    </form>
+                </div>
+
+                <nb-list>
+                    <nb-list-item *ngFor="let point of loadingPoints">
+                        <div class="loading-point-wrapper">
+                            <div class="lp-name">{{point.name}}</div>
+                            <div class="lp-address">{{point.address}}</div>
+                        </div>
+                        <button class="delete-button" (click)="onDeleteLoadingPoint(point)">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </nb-list-item>
+                </nb-list>
             </nb-card>
         </div>
     </div>   
