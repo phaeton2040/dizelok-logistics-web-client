@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'http://api.dizelok.com'
+  baseUrl: 'https://api.dizelok.com'
 };
