@@ -7,6 +7,7 @@ import { ThemeModule } from '../@theme/theme.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { UsersModule } from './users/users.module';
 import { OrganisationModule } from './organisation/organisation.module';
+import { CustomersModule } from './customers/customers.module';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -18,6 +19,7 @@ const PAGES_COMPONENTS = [
     ThemeModule,
     DashboardModule,
     UsersModule,
+    CustomersModule,
     OrganisationModule,
     MiscellaneousModule,
   ],
@@ -25,5 +27,4 @@ const PAGES_COMPONENTS = [
     ...PAGES_COMPONENTS,
   ],
 })
-export class PagesModule {
-}
+export class PagesModule {}

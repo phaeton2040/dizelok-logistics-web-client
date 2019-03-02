@@ -1,0 +1,97 @@
+<div class="container">
+        <div class="row">
+            <div class="full-width-wrapper">
+                <nb-card [nbSpinner]="inProgress" nbSpinnerSize="xlarge">
+                    <nb-card-header>{{title}}</nb-card-header>
+                    <nb-card-body>
+                        <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="input-container">
+                                        <input type="text"
+                                            nbInput
+                                            fullWidth
+                                            formControlName="name"
+                                            placeholder="Название">
+                                    </div>
+                                    <div class="customer-contacts">
+                                        <div class="customer-form-subtitle-title">Контакты</div>
+                                        <div class="contact-wrapper" *ngFor="let contact of contacts" [formGroup]="contact">
+                                            <input type="text"
+                                                nbInput
+                                                formControlName="name"
+                                                placeholder="Имя">
+                                            <input type="text"
+                                                nbInput
+                                                formControlName="phone"
+                                                placeholder="Телефон">
+                                            <input type="text"
+                                                nbInput
+                                                formControlName="email"
+                                                placeholder="Email">
+                                        </div>
+                                        <div class="contact-buttons">
+                                            <button type="button" nbButton
+                                                (click)="onAddContact()"
+                                                outline
+                                                size="xsmall"
+                                                status="primary">
+                                                    Добавить
+                                            </button>
+                                            <button type="button" nbButton
+                                                (click)="removeLastContact()"
+                                                *ngIf="contacts.length > 1"
+                                                outline
+                                                size="xsmall"
+                                                status="danger">
+                                                    Удалить
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="customer-loading-points">
+                                        <div class="customer-form-subtitle-title">Точки загрузки</div>
+                                        <div class="point-wrapper" *ngFor="let point of deliveryPoints" [formGroup]="point">
+                                            <input type="text"
+                                                nbInput
+                                                formControlName="name"
+                                                placeholder="Имя">
+                                            <input type="text"
+                                                nbInput
+                                                formControlName="address"
+                                                placeholder="Адрес">
+                                        </div>
+                                        <div class="point-buttons">
+                                            <button type="button" nbButton
+                                                (click)="addDeliveryPoint()"
+                                                outline
+                                                size="xsmall"
+                                                status="primary">
+                                                    Добавить
+                                            </button>
+                                            <button type="button" nbButton
+                                                (click)="removeLastPoint()"
+                                                *ngIf="deliveryPoints.length > 1"
+                                                outline
+                                                size="xsmall"
+                                                status="danger">
+                                                    Удалить
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="input-container">
+                                        <button type="submit" nbButton>{{buttonText}}</button>
+                                        <button type="button"
+                                                nbButton
+                                                [disabled]="isDeletingPoint"
+                                                status="danger"
+                                                (click)="onDelete()"
+                                                *ngIf="customer.id">Удалить</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </nb-card-body>
+                </nb-card>
+            </div>
+        </div>   
+</div> 

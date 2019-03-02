@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="full-width-wrapper">
+        <nb-card [nbSpinner]="inProgress" nbSpinnerSize="xlarge">
+                <nb-card-header>Клиенты</nb-card-header>
+                <nb-list>
+                    <nb-list-item *ngFor="let customer of customers" (click)="onCustomerClick(customer)">
+                        <div class="customer-wrapper">
+                            <div class="customer-name">{{customer.name}}</div>
+                        </div>
+                        <button class="delete-button" (click)="onDeleteCustomer($event, customer)">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </nb-list-item>
+                </nb-list>
+            </nb-card>
+    </div>
+</div>

@@ -10,6 +10,7 @@ import { AnalyticsService } from './utils/analytics.service';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './utils/auth.guard';
+import { environment } from '../../environments/environment';
 
 export class NbSimpleRoleProvider extends NbRoleProvider {
   getRole() {
@@ -18,13 +19,15 @@ export class NbSimpleRoleProvider extends NbRoleProvider {
   }
 }
 
+export function authTokenFilter(data) { return false; }
+
 export const NB_CORE_PROVIDERS = [
   ...DataModule.forRoot().providers,
   NbAuthModule.forRoot({
     strategies: [
       NbPasswordAuthStrategy.setup({
         name: 'email',
-        baseEndpoint: 'http://localhost:3333',
+        baseEndpoint: environment.baseUrl,
         login: {
           endpoint: '/login',
         },
@@ -84,7 +87,7 @@ export const NB_CORE_PROVIDERS = [
   {
     // to bypass default nebular filter
     provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER,
-    useValue: function (data) { return false; }
+    useValue: authTokenFilter
   },
   AuthGuard,
   AnalyticsService,

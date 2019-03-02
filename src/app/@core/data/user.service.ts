@@ -6,12 +6,12 @@ import { User } from "../models/user.model";
 import { IUser } from "../interfaces/user.interface";
 import { IUsersResponse } from "../interfaces/users-response.interface";
 import { IAPIResponse } from "../interfaces/api-response.interface";
+import { environment } from '../../../environments/environment';
 
 
 @Injectable()
 export class UserService {
-    //TODO: remove hardcode
-    private _baseUrl = 'http://localhost:3333';
+    private _baseUrl = environment.baseUrl;
     private userListSubj = new BehaviorSubject<User[]>([]);
 
     public get userList$() {

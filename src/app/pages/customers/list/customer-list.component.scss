@@ -1,0 +1,43 @@
+@import '../../../@theme/styles/variables.scss';
+
+nb-list-item {
+    display: flex;
+    justify-content: space-between;
+
+    .delete-button {
+        display: none;
+    }
+}
+
+nb-list-item.me {
+    background-color: $user-list-item-current-user;
+}
+
+nb-list-item:hover {
+    cursor: pointer;
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(186,186,186,1);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(186,186,186,1);
+    box-shadow: 1px 1px 5px 0px rgba(186,186,186,1);
+
+    .delete-button {
+        display: block;
+        background: transparent;
+        border: none;
+        outline: none;
+
+        &:hover {
+            opacity: 0.7;
+            cursor: pointer;
+        }
+
+        i {
+            color: crimson;
+        }
+    }
+}
+
+.delete-prompt {
+    button {
+        margin-right: 10px;
+    }
+}

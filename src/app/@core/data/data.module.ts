@@ -6,15 +6,18 @@ import { UserService } from './user.service';
 import { AuthService } from './auth.service';
 import { UserResolver } from './resolvers/user.resolver';
 import { OrganisationService } from './organisation.service';
+import { CustomerService } from './customer.service';
+import { CustomerResolver } from './resolvers/customer.resolver';
 
 const SERVICES = [
   StateService,
   UserService,
   AuthService,
   OrganisationService,
-
+  CustomerService,
   // Resolvers
-  UserResolver
+  UserResolver,
+  CustomerResolver
 ];
 
 @NgModule({

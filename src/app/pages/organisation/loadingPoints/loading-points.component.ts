@@ -14,6 +14,7 @@ export class LoadingPointsComponent {
  
     public loadingPoints: LoadingPoint[];
     public loadingPointForm: FormGroup;
+    public inProgress = false;
 
     constructor(private orgService: OrganisationService) {
         this.orgService.getLoadingPoints();
@@ -33,11 +34,13 @@ export class LoadingPointsComponent {
 
     onSubmit() {
         if (this.loadingPointForm.valid) {
+            this.inProgress = true;
             this.orgService.saveLoadingPoint(new LoadingPoint(this.loadingPointForm.value))
                 .subscribe((response: IAPIResponse) => {
                     if (response.ok) {
                         this.orgService.getLoadingPoints();
                     }
+                    this.inProgress = false;
                     // TODO: handle error
                 })
         } else {

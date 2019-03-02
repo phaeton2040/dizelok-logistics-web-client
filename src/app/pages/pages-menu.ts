@@ -31,11 +31,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Все клиенты',
-        link: '#'
+        link: '/pages/customers'
       },
       {
         title: 'Добавить нового',
-        link: '#'
+        link: '/pages/customers/add'
       }
     ]
   },

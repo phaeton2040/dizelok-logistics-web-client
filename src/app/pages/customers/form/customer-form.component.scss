@@ -1,0 +1,47 @@
+@import '../../../@theme/styles/variables.scss';
+
+.input-container {
+    margin-bottom: 1rem;
+
+    input.ng-invalid.ng-dirty {
+        border-color: $input-error-border
+    }
+
+    button {
+        margin-right: 10px;
+    }
+}
+
+.contact-wrapper, .point-wrapper {
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: space-between;
+
+    input.ng-invalid.ng-dirty {
+        border-color: $input-error-border
+    }
+}
+
+.point-wrapper {
+    justify-content: flex-start;
+
+    input {
+        margin-right: 1rem;
+    }
+
+    input.ng-invalid.ng-dirty {
+        border-color: $input-error-border
+    }
+}
+
+.customer-form-subtitle-title {
+    padding: 10px 0 10px;
+    font-weight: bold;
+}
+
+.contact-buttons, .point-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    width: 14rem;
+}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
 
 @Component({
@@ -7,5 +7,8 @@ import { NbDialogRef } from '@nebular/theme';
   templateUrl: './confirm.component.html',
 })
 export class ConfirmComponent {
+    @Input()
+    public title: string;
+
     constructor(public ref: NbDialogRef<ConfirmComponent>) {}
 }
