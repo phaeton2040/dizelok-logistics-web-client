@@ -1,3 +1,6 @@
+@import url('./fonts.scss');
+@import url('../fonts/font-awesome/css/all.min.css');
+
 // themes - our custom or/and out of the box themes
 @import 'themes';
 
@@ -35,10 +38,6 @@
   }
   @include bootstrap-rtl();
 };
-
-// TODO: download this font and use it locally
-@import url('https://fonts.googleapis.com/css?family=Exo+2');
-@import url('https://use.fontawesome.com/releases/v5.7.1/css/all.css');
 
 * {
   font-family: 'Exo 2', sans-serif;
